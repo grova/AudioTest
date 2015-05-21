@@ -1,4 +1,4 @@
-var Hammer, alert, console, Media;
+var Hammer, console;
 
 function Test() {
     "use strict";
