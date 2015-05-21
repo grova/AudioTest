@@ -3,6 +3,7 @@ var Hammer, console;
 function Test() {
     "use strict";
     var self = this;
+    this.audioId = "sounds/dooo.wav";
     
     function init() {
         
@@ -53,7 +54,7 @@ function Test() {
         
         
         
-        src = "sounds/WARP.WAV";
+        src = self.audioId;
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
             lla.preloadAudio(src, src, 1, function (msg) {
@@ -113,7 +114,7 @@ function Test() {
     };
     
     this.playLLAudio = function () {
-        var src = "sounds/WARP.WAV",
+        var src = self.audioId,
             lla;
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
@@ -126,7 +127,7 @@ function Test() {
     };
     
     this.stopLLAudio = function () {
-        var src = "sounds/WARP.WAV",
+        var src = self.audioId,
             lla;
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
