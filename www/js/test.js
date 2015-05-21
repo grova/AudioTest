@@ -77,10 +77,16 @@ function Test() {
         var src = "sounds/WARP.WAV",
             my_media;
         
+        console.log("new media");
+        
         my_media = new Media(src, onSuccess, onError);
+        
+        console.log("ok");
+        console.log(my_media);
 
         // Play audio
         my_media.play();
+        console.log("play");
 
         // Update my_media position every second
         /*
@@ -111,7 +117,7 @@ function Test() {
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
-
+            console.log("preloadaudio " + src);
             // preload audio resource
             lla.preloadAudio(src, src, 1, function (msg) {
                 console.log("ok");
@@ -119,6 +125,7 @@ function Test() {
                 console.log('error: ' + msg);
             });
             
+            console.log("play");
             lla.play(src);
         } else {
             alert("no audio plugin");
