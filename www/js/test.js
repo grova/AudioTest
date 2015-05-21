@@ -22,26 +22,11 @@ function Test() {
         });
         */
         
-        /*
-        $("#media_btn").on("click", function () {
-            console.log("click");
-        });
-        $("#ll_btn").on("click", function () {
-            alert("ll");
-        });
-        
-        $("#media_btn").on("mouseup", function () {
-            console.log("up");
-        });
-        */
         
         $("#media_btn").on("touchstart", function (ev) {
             console.log("touchstart");
             ev.preventDefault();
             self.playMediaAudio();
-        });
-        $("#ll_btn").on("click", function () {
-            //alert("ll");
         });
         $("#media_btn").on("touchend", function (ev) {
             console.log("touchend");
@@ -53,17 +38,20 @@ function Test() {
             self.playMediaAudio();
         
         });
+
         
-        $("#ll_btn").on("mouseup", function () {
+        $("#ll_btn").on("touchend", function () {
             console.log("up");
             self.stopLLAudio();
         });
         
         
-        $("#ll_btn").on("mousedown", function () {
+        $("#ll_btn").on("touchstart", function () {
             console.log("down");
             self.playLLAudio();
         });
+        
+        
         
         src = "sounds/WARP.WAV";
         if (window.plugins && window.plugins.LowLatencyAudio) {
