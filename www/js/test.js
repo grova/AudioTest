@@ -69,11 +69,12 @@ function Test() {
     
     function onError(arg) {
         alert("media error " + arg);
+        console.log(arg);
     }
     
     this.playMediaAudio = function () {
         // Create Media object from src
-        var src = "./sounds/WARP.WAV",
+        var src = "sounds/WARP.WAV",
             my_media;
         
         my_media = new Media(src, onSuccess, onError);
@@ -105,7 +106,7 @@ function Test() {
     };
     
     this.playLLAudio = function () {
-        var src = "./sounds/WARP.WAV",
+        var src = "sounds/WARP.WAV",
             lla;
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
