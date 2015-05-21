@@ -17,26 +17,49 @@
  * under the License.
  */
 var app = {
+    
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
+        /*
+        var run = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+        if (run) {
+            this.bindEvents();
+            // PhoneGap application
+        } else {
+            // Web page
+            this.onDeviceReady();
+        }
+        */
         this.bindEvents();
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+            // niente
+        } else {
+            $(document).ready(function () {
+                app.onDeviceReady(); //this is the browser
+            });
+        }
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
     },
+    
+    
+    test : null,
+    
+    
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -45,7 +68,10 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        
+        app.test = new Test();
     }
+    
 };
 
 app.initialize();
