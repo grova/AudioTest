@@ -36,6 +36,7 @@ function Test() {
         $("#media_btn").on("touchstart", function (ev) {
             console.log("touchstart");
             ev.preventDefault();
+            self.playMediaAudio();
         });
         $("#ll_btn").on("click", function () {
             alert("ll");
@@ -112,6 +113,7 @@ function Test() {
 
             // preload audio resource
             lla.preloadAudio(src, src, 1, function (msg) {
+                console.log("ok");
             }, function (msg) {
                 console.log('error: ' + msg);
             });
