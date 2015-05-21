@@ -32,7 +32,7 @@
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
         xmlns:gap = "http://phonegap.com/ns/1.0">
     
-    <name>Whereizer</name>
+    <name>AudioTest</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
