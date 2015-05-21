@@ -6,7 +6,9 @@ function Test() {
     
     function init() {
         
-        var el = $("#media_btn");
+        var el = $("#media_btn"),
+            src,
+            lla;
         
         /*
         var hammertime = new Hammer(el[0]);
@@ -39,7 +41,7 @@ function Test() {
             self.playMediaAudio();
         });
         $("#ll_btn").on("click", function () {
-            alert("ll");
+            //alert("ll");
         });
         $("#media_btn").on("touchend", function (ev) {
             console.log("touchend");
@@ -51,16 +53,27 @@ function Test() {
             self.playMediaAudio();
         
         });
-        $("#media_btn").on("mouseup", function () {
+        
+        $("#ll_btn").on("mouseup", function () {
             console.log("up");
+            self.stopLLAudio();
         });
+        
+        
         $("#ll_btn").on("mousedown", function () {
             console.log("down");
             self.playLLAudio();
         });
         
-            
-
+        src = "sounds/WARP.WAV";
+        if (window.plugins && window.plugins.LowLatencyAudio) {
+            lla = window.plugins.LowLatencyAudio;
+            lla.preloadAudio(src, src, 1, function (msg) {
+                console.log("ok");
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+        }
     }
     
     function onSuccess() {
@@ -117,16 +130,21 @@ function Test() {
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
-            console.log("preloadaudio " + src);
-            // preload audio resource
-            lla.preloadAudio(src, src, 1, function (msg) {
-                console.log("ok");
-            }, function (msg) {
-                console.log('error: ' + msg);
-            });
-            
             console.log("play");
             lla.play(src);
+        } else {
+            alert("no audio plugin");
+        }
+    };
+    
+    this.stopLLAudio = function () {
+        var src = "sounds/WARP.WAV",
+            lla;
+        
+        if (window.plugins && window.plugins.LowLatencyAudio) {
+            lla = window.plugins.LowLatencyAudio;
+            console.log("play");
+            lla.stop(src);
         } else {
             alert("no audio plugin");
         }
