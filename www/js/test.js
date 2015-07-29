@@ -145,8 +145,10 @@ function Test() {
     };
     
     this.stopLLAudio = function () {
-        var src = self.audioId,
+        var src,
             lla;
+        
+        src = self.audioId[self.currentIndex];
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
