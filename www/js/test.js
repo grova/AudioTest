@@ -3,13 +3,17 @@ var Hammer, console;
 function Test() {
     "use strict";
     var self = this;
-    this.audioId = "sounds/dooo.wav";
+    this.audioId = ["sounds/doo1.wav", "sounds/doo2.wav"];
+    this.currentIndex = 0;
+    
+    
     
     function init() {
         
         var el = $("#media_btn"),
             src,
-            lla;
+            lla,
+            i;
         
         /*
         var hammertime = new Hammer(el[0]);
@@ -54,9 +58,17 @@ function Test() {
         
         
         
-        src = self.audioId;
+        
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
+            
+            src = self.audioId[0];
+            lla.preloadAudio(src, src, 1, function (msg) {
+                console.log("ok");
+            }, function (msg) {
+                console.log('error: ' + msg);
+            });
+            src = self.audioId[1];
             lla.preloadAudio(src, src, 1, function (msg) {
                 console.log("ok");
             }, function (msg) {
@@ -114,8 +126,14 @@ function Test() {
     };
     
     this.playLLAudio = function () {
-        var src = self.audioId,
+        var src,
             lla;
+        
+        self.currentIndex += 1;
+        if (self.currentIndex >= self.audioId.length) {
+            self.currentIndex = 0;
+        }
+        src = self.audioId[self.currentIndex];
         
         if (window.plugins && window.plugins.LowLatencyAudio) {
             lla = window.plugins.LowLatencyAudio;
